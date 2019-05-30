@@ -80,7 +80,7 @@ module.exports = {
   },
   updateVideo: (videoId, newVideo) => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: newVideo })
+      Video.findByIdAndUpdate(videoId, { $set: newVideo }, {new:true})
         .exec()
         .then(video => {
           return resolve(video);
@@ -92,7 +92,7 @@ module.exports = {
   },
   offlineVideo: videoId => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: { is_online: false } })
+      Video.findByIdAndUpdate(videoId, { $set: { is_online: false } }, {new:true})
         .exec()
         .then(video => {
           return resolve(video);
@@ -104,7 +104,7 @@ module.exports = {
   },
   onlineVideo: videoId => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: { is_online: true } })
+      Video.findByIdAndUpdate(videoId, { $set: { is_online: true } }, {new:true})
         .exec()
         .then(video => {
           return resolve(video);
