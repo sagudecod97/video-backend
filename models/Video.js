@@ -21,12 +21,12 @@ const videoSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.ObjectId,
       ref: "Author",
-      required: true
+      // required: true
     },
     book:{
       type: mongoose.Schema.ObjectId,
       ref: "Book",
-      required: true
+      // required: true
     },
     video_url: {
       type: String,
@@ -34,7 +34,7 @@ const videoSchema = new mongoose.Schema(
     },
     is_online: {
       type: Boolean,
-      required: true
+      default: true
     }
   },
   { timestamps: true }
