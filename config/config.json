@@ -1,0 +1,6 @@
+{
+    "port": 4000,
+    "user": "sagudecod97",
+    "password": "bgoLQN60",
+    "db": "mongodb+srv://sagudecod97:bgoLQN60@cluster0-yawjl.mongodb.net/App-videos?retryWrites=true"
+} 
