@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const config = require("../config");
 const { Video } = require("./Video");
+const { Book } = require("./Book");
+const { Author } = require("./Author");
+const { User } = require("./User");
 
 const dbConnection = mongoose.connect(
   config.storageConfig.db,
@@ -13,6 +16,9 @@ const dbConnection = mongoose.connect(
 );
 
 module.exports = {
-    Video,
-    dbConnection
-}
+  Video,
+  Book,
+  Author,
+  User,
+  dbConnection
+};
