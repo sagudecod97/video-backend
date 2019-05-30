@@ -13,6 +13,6 @@ router.get("/get/online/videos", videoController.getOnlineVideos);
 router.get("/get/offline/videos", videoController.getOfflineVideos);
 router.put("/update/video/:videoid", videoController.modifyVideo);
 router.delete("/delete/video/:videoid", videoController.deleteVideo);
-router.patch("/offline/video/:videoid", videoController.turnOnVideo);
+router.patch("/online/video/:videoid", videoController.turnOnVideo);
 
 module.exports = router;
