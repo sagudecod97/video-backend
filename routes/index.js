@@ -15,4 +15,9 @@ router.put("/update/video/:videoid", videoController.modifyVideo);
 router.delete("/delete/video/:videoid", videoController.deleteVideo);
 router.patch("/online/video/:videoid", videoController.turnOnVideo);
 
+// AUTHOR CRUD // // AUTHOR CRUD // // AUTHOR CRUD //
+// AUTHOR CRUD // // AUTHOR CRUD // // AUTHOR CRUD //
+// AUTHOR CRUD // // AUTHOR CRUD // // AUTHOR CRUD //
+
+
 module.exports = router;
