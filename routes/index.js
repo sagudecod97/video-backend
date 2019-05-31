@@ -24,3 +24,8 @@ router.get("/get/author/:authorid", authorController.getAuthor);
 router.put("/update/autor/:authorid", authorController.modifyAuthor);
 router.delete("/delete/author/:authorid", authorController.deleteAuthor);
 module.exports = router;
+
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+
