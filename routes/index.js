@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const videoController = require("../controllers/videoController");
 const authorController = require("../controllers/authorController")
+const userController = require('../controllers/userController')
+const { createUserValidator, validateToken, isEmailExist } = require('../middlewares/validations')
+
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
@@ -23,6 +26,24 @@ router.post("/create/author", authorController.createAuthor);
 router.get("/get/author/:authorid", authorController.getAuthor);
 router.put("/update/autor/:authorid", authorController.modifyAuthor);
 router.delete("/delete/author/:authorid", authorController.deleteAuthor);
+
+
+// USER CRUD // // USER CRUD // // USER CRUD //
+// USER CRUD // // USER CRUD // // USER CRUD //
+// USER CRUD // // USER CRUD // // USER CRUD //
+
+// REGISTER
+router.post('/create/user', [createUserValidator, isEmailExist], userController.createUser)
+// LOGIN
+router.post('/login/user', userController.loginUser)
+router.use(validateToken)
+router.get('/me', userController.me)
+// USER CRUD
+router.get('/user/:userid', userController.getThisUser)
+router.get('/users', userController.getAllUsers)
+router.delete('/delete/user/:userid', userController.deleteThisUser)
+router.put('/update/user/:userid', userController.updateThisUser)
+
 module.exports = router;
 
 // BOOK CRUD // BOOK CRUD // BOOK CRUD //
