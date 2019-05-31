@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const videoController = require("../controllers/videoController");
-
+const authorController = require("../controllers/authorController")
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
@@ -15,4 +15,9 @@ router.put("/update/video/:videoid", videoController.modifyVideo);
 router.delete("/delete/video/:videoid", videoController.deleteVideo);
 router.patch("/online/video/:videoid", videoController.turnOnVideo);
 
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD //
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD // 
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD // 
+
+router.post("/create/author", authorController.createAuthor);
 module.exports = router;
