@@ -17,6 +17,10 @@ const authorSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true
+    },
+    is_online: {
+      type: Boolean,
+      default: true
     }
   },
   { timestamps: true }
