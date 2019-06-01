@@ -61,6 +61,18 @@ module.exports = {
                 return reject(err);
             })
         })
+    },
+    eraseBook: (bookId)=>{
+        return new Promise((resolve,reject)=>{
+            Book.findByIdAndUpdate(bookId, { $set: { is_online:false } }, { new:true })
+            .exec()
+            .then((book)=>{
+                return resolve(book);
+            })
+            .catch((err)=>{
+                return reject(err);
+            })
+        })
     }
 
 }
