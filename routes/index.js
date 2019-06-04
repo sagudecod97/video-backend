@@ -22,7 +22,7 @@ router.post(
 );
 // LOGIN
 router.post("/login/user", userController.loginUser);
-router.use(validateToken);
+// router.use(validateToken);
 router.get("/me", userController.me);
 // USER CRUD
 router.get("/get/user/:userid", userController.getThisUser);
