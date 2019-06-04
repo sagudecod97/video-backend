@@ -25,6 +25,10 @@ const bookSchema = new mongoose.Schema(
     publisher: {
       type: String,
       required: true
+    },
+    is_online: {
+      type: Boolean,
+      default: true
     }
   },
   { timestamps: true }

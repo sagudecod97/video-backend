@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const videoController = require("../controllers/videoController");
-const authorController = require("../controllers/authorController")
-const userController = require('../controllers/userController')
-const { createUserValidator, validateToken, isEmailExist } = require('../middlewares/validations')
+const authorController = require("../controllers/authorController");
+const userController = require('../controllers/userController');
+const bookController = require("../controllers/bookController");
+const { createUserValidator, validateToken, isEmailExist } = require('../middlewares/validations');
 
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 // VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
@@ -45,3 +46,13 @@ router.delete('/delete/user/:userid', userController.deleteThisUser)
 router.put('/update/user/:userid', userController.updateThisUser)
 
 module.exports = router;
+
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+
+router.post("/create/book", bookController.createBook);
+router.get("/get/book/:bookid", bookController.getBook);
+router.get("/get/books", bookController.getBooks);
+router.get("/update/book/:bookid", bookController.modifyBook);
+router.delete("/delete/book/:bookid", bookController.eraseBook);
