@@ -24,7 +24,7 @@ router.patch("/online/video/:videoid", videoController.turnOnVideo);
 
 router.post("/create/author", authorController.createAuthor);
 router.get("/get/author/:authorid", authorController.getAuthor);
-router.put("/update/autor/:authorid", authorController.modifyAuthor);
+router.put("/update/author/:authorid", authorController.modifyAuthor);
 router.delete("/delete/author/:authorid", authorController.deleteAuthor);
 
 
@@ -36,11 +36,11 @@ router.delete("/delete/author/:authorid", authorController.deleteAuthor);
 router.post('/create/user', [createUserValidator, isEmailExist], userController.createUser)
 // LOGIN
 router.post('/login/user', userController.loginUser)
-router.use(validateToken)
+// router.use(validateToken)
 router.get('/me', userController.me)
 // USER CRUD
-router.get('/user/:userid', userController.getThisUser)
-router.get('/users', userController.getAllUsers)
+router.get('/get/user/:userid', userController.getThisUser)
+router.get('/get/users', userController.getAllUsers)
 router.delete('/delete/user/:userid', userController.deleteThisUser)
 router.put('/update/user/:userid', userController.updateThisUser)
 

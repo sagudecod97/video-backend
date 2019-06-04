@@ -29,7 +29,7 @@ const {
       const user = await deleteUser(req.params.userid)
       user
         ? res.status(200).send({ message: `El usuario ha sido eliminado` })
-        : res.ststus(409).send({ message: 'El usuario no existe' })
+        : res.status(409).send({ message: 'El usuario no existe' })
     },
     updateThisUser: async (req, res) => {
       const newUser = await updateUser(req.params.userid, req.body)

@@ -22,7 +22,7 @@ module.exports = {
         video_url
       });
       newVideo.save((err, video) => {
-        err ? reject(new Error(false)) : resolver(video);
+        err ? reject(err) : resolver(video);
       });
     });
   },
@@ -32,10 +32,10 @@ module.exports = {
         .populate("author", "book")
         .exec()
         .then(videos => {
-          return resolve(videos);
+          resolve(videos);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
@@ -45,10 +45,10 @@ module.exports = {
         .populate("author", "book")
         .exec()
         .then(videos => {
-          return resolve(videos);
+          resolve(videos);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
@@ -58,10 +58,10 @@ module.exports = {
         .populate("author", "book")
         .exec()
         .then(videos => {
-          return resolve(videos);
+          resolve(videos);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
@@ -71,46 +71,54 @@ module.exports = {
         .populate("author", "book")
         .exec()
         .then(video => {
-          return resolve(video);
+          resolve(video);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
   updateVideo: (videoId, newVideo) => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: newVideo }, {new:true})
+      Video.findByIdAndUpdate(videoId, { $set: newVideo }, { new: true })
         .exec()
         .then(video => {
-          return resolve(video);
+          resolve(video);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
   offlineVideo: videoId => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: { is_online: false } }, {new:true})
+      Video.findByIdAndUpdate(
+        videoId,
+        { $set: { is_online: false } },
+        { new: true }
+      )
         .exec()
         .then(video => {
-          return resolve(video);
+          resolve(video);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   },
   onlineVideo: videoId => {
     return new Promise((resolve, reject) => {
-      Video.findByIdAndUpdate(videoId, { $set: { is_online: true } }, {new:true})
+      Video.findByIdAndUpdate(
+        videoId,
+        { $set: { is_online: true } },
+        { new: true }
+      )
         .exec()
         .then(video => {
-          return resolve(video);
+          resolve(video);
         })
         .catch(err => {
-          return reject(err);
+          reject(err);
         });
     });
   }

@@ -15,7 +15,7 @@ module.exports = {
         }
     },
     getAuthor: async (req,res)=>{
-        const author = await findAuthor(req.params.authorId);
+        const author = await findAuthor(req.params.authorid);
         if(author){
             res.status(200).send(author);
         }else{
@@ -32,7 +32,7 @@ module.exports = {
     },
     deleteAuthor: async(req,res)=>{
         const author = await eraseAuthor(req.params.authorid);
-        if(video){
+        if(author){
             res.status(200).send({ message: "El autor ha sido eliminado"});
         }else{
             res.status(404).send({ message: "¡Lo sentimos! el autor no existe"})
