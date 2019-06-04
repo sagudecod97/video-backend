@@ -1,89 +1,65 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const videoController = require("../controllers/videoController");
+const authorController = require("../controllers/authorController");
+const userController = require("../controllers/userController");
+const bookController = require("../controllers/bookController");
+const {
+  createUserValidator,
+  validateToken,
+  isEmailExist
+} = require("../middlewares/validations");
 
-//Create a New Video
-router.post("/api/v1/create/video",(req,res)=>{
-    const { name,category,description,url,online } = req.body;
-    const newVideo = Video({
-        name,
-        category,
-        description,
-        url,
-        online
-    })
-    newVideo.save((err,video)=>{
-        if(!err){
-            res.status(201).send(video);
-        }else{
-            res.status(409).send(err);
-        }
-    })
-})
+// USER CRUD // // USER CRUD // // USER CRUD //
+// USER CRUD // // USER CRUD // // USER CRUD //
+// USER CRUD // // USER CRUD // // USER CRUD //
 
-//Get a Video
-router.get("/api/v1/get/video/:videoid",(req,res)=>{
-    const { videoid } = req.params;
-    Video.findById(videoid)
-    .exec()
-    .then((video)=>{
-        res.status(200).send(video);
-    })
-    .catch((err)=>{
-        res.status(404).send(err);
-    })
-})
+// REGISTER
+router.post(
+  "/create/user",
+  [createUserValidator, isEmailExist],
+  userController.createUser
+);
+// LOGIN
+router.post("/login/user", userController.loginUser);
+router.use(validateToken);
+router.get("/me", userController.me);
+// USER CRUD
+router.get("/get/user/:userid", userController.getThisUser);
+router.get("/get/users", userController.getAllUsers);
+router.delete("/delete/user/:userid", userController.deleteThisUser);
+router.put("/update/user/:userid", userController.updateThisUser);
 
-//Get ALL Videos
-router.get("/api/v1/get/videos",(req,res)=>{
-    Video.find()
-    .exec()
-    .then((videos)=>{
-        res.status(200).send(videos);
-    })
-    .catch((err)=>{
-        res.status(404).send(err);
-    })
-})
+// VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
+// VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
+// VIDEO CRUD // // VIDEO CRUD // // VIDEO CRUD //
 
-//Updating a Video
-router.put("/api/v1/update/video/:videoid", (req,res)=>{
-    const { videoid } = req.params;
-    Video.findByIdAndUpdate(videoid, {$set: req.body}, {new: true})
-    .exec()
-    .then((video)=>{
-        res.status(200).send(video)
-    })
-    .catch((err)=>{
-        res.status(409).send(err);
-    })
-})
+router.post("/create/video", videoController.createVideo);
+router.get("/get/video/:videoid", videoController.getVideo);
+router.get("/get/videos", videoController.getVideos);
+router.get("/get/online/videos", videoController.getOnlineVideos);
+router.get("/get/offline/videos", videoController.getOfflineVideos);
+router.put("/update/video/:videoid", videoController.modifyVideo);
+router.delete("/delete/video/:videoid", videoController.deleteVideo);
+router.patch("/online/video/:videoid", videoController.turnOnVideo);
 
-//Deleting a Video
-router.delete("/api/v1/delete/video/:videoid",(req,res)=>{
-    const { videoid } = req.params;
-    Video.findByIdAndDelete(videoid)
-    .exec()
-    .then((video)=>{
-        res.status(200).send(
-            { message : `The video with id ${videoid} has been eliminated`}
-        )
-    })
-    .catch((err)=>{
-        res.status(409).send(err);
-    })
-})
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD //
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD //
+// AUTHOR CRUD // AUTHOR CRUD // AUTHOR CRUD //
 
-//Setting a Video Offline
-router.patch("/api/v1/offline/video/:videoid",(req,res)=>{
-    const { videoid } = req.params;
-    Video.findByIdAndUpdate(videoid, { $set: { online: false}}, { new: true })
-    .exec()
-    .then((video)=>{
-        res.status(200).send(video)
-    })
-    .catch((err)=>{
-        res.status(409).send(err)
-    })
-})
+router.post("/create/author", authorController.createAuthor);
+router.get("/get/author/:authorid", authorController.getAuthor);
+router.put("/update/author/:authorid", authorController.modifyAuthor);
+router.delete("/delete/author/:authorid", authorController.deleteAuthor);
 
-module.exports = router
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+// BOOK CRUD // BOOK CRUD // BOOK CRUD //
+
+router.post("/create/book", bookController.createBook);
+router.get("/get/book/:bookid", bookController.getBook);
+router.get("/get/books", bookController.getBooks);
+router.put("/update/book/:bookid", bookController.modifyBook);
+router.delete("/delete/book/:bookid", bookController.deleteBook);
+
+module.exports = router;
