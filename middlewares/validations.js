@@ -8,9 +8,7 @@ module.exports = {
     body: Joi.object().keys({
       name: Joi.string().required(),
       last_name: Joi.string().required(),
-      email: Joi.string()
-        .email()
-        .required(),
+      email: Joi.string().email().required(),
       password: Joi.string()
         .min(8)
         .required()
